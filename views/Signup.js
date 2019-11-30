@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
+let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get('window').width;
 
 class Signup extends React.Component {
 
@@ -40,15 +43,30 @@ class Signup extends React.Component {
 
   render() {
     return (
-      // this is just random filler for the template, but this is where what the user sees is rendered
-      <View style={styles.background}>
-        <Text style={styles.imAText}> I'm a </Text>
+      <View style={styles.container}>
+        <Text style={styles.startText}> 
+          I'm a 
+        </Text>
         <View style={styles.studentTeacherContainer}>
           <TouchableOpacity onPress={() => this.studentPressed()}>
-            {this.state.student == true? <Text style={styles.studentButton}>Student</Text> : <Text style={styles.studentButtonDisabled}>Student</Text>}
+            {this.state.student == true? 
+            <Text style={styles.studentButton}>
+              Student
+            </Text> 
+            : 
+            <Text style={styles.studentButtonDisabled}>
+              Student
+            </Text>}
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.teacherPressed()}>
-            {this.state.student == true? <Text style={styles.teacherButtonDisabled}>Teacher</Text> : <Text style={styles.teacherButton}>Teacher</Text>}
+            {this.state.student == true? 
+            <Text style={styles.teacherButtonDisabled}>
+              Teacher
+            </Text> 
+            : 
+            <Text style={styles.teacherButton}>
+              Teacher
+            </Text>}
           </TouchableOpacity>
         </View>
         {this.state.student == true? 
@@ -57,6 +75,14 @@ class Signup extends React.Component {
           <View style={styles.userInfoInput}>
             <TextInput
               style={styles.textInputStyle}
+              value={this.state.name}
+              placeholder='name'
+              onChangeText={(name) => this.setState({name: name})}
+            />
+            </View>
+          <View style={styles.userInfoInput}>
+            <TextInput
+              style={styles.textInputStyle}
               value={this.state.email}
               placeholder='email'
               onChangeText={(email) => this.setState({email: email})}
@@ -74,28 +100,16 @@ class Signup extends React.Component {
             <TextInput
               style={styles.textInputStyle}
               value={this.state.number}
-              placeholder='000-000-0000'
+              placeholder='(XXX)-XXX-XXXX'
               onChangeText={(number) => this.setState({number: number})}
             />
           </View>
-          <View style={styles.userInfoInput}>
-            <TextInput
-              style={styles.textInputStyle}
-              value={this.state.name}
-              placeholder='name'
-              onChangeText={(name) => this.setState({name: name})}
-            />
-          </View>
-          <View style={styles.userInfoInput}>
-            <TextInput
-              style={styles.textInputStyle}
-              value={this.state.teacherCode}
-              placeholder='teacher code'
-              onChangeText={(teacherCode) => this.setState({teacherCode: teacherCode})}
-            />
-          </View>
           <TouchableOpacity onPress={() => {this.studentDone()}}>
-            <Text style={styles.doneButton}> Done </Text>
+          <View style={styles.doneButton}>
+              < Text style={styles.buttonText}> 
+                Done 
+              </Text>
+              </View>
           </TouchableOpacity>
         </View> 
         : 
@@ -104,6 +118,14 @@ class Signup extends React.Component {
           <View style={styles.userInfoInput}>
             <TextInput
               style={styles.textInputStyle}
+              value={this.state.name}
+              placeholder='name'
+              onChangeText={(name) => this.setState({name: name})}
+            />
+            </View>
+          <View style={styles.userInfoInput}>
+            <TextInput
+              style={styles.textInputStyle}
               value={this.state.email}
               placeholder='email'
               onChangeText={(email) => this.setState({email: email})}
@@ -121,20 +143,16 @@ class Signup extends React.Component {
             <TextInput
               style={styles.textInputStyle}
               value={this.state.number}
-              placeholder='000-000-0000'
+              placeholder='(XXX)-XXX-XXXX'
               onChangeText={(number) => this.setState({number: number})}
             />
           </View>
-          <View style={styles.userInfoInput}>
-            <TextInput
-              style={styles.textInputStyle}
-              value={this.state.name}
-              placeholder='name'
-              onChangeText={(name) => this.setState({name: name})}
-            />
-          </View>
           <TouchableOpacity onPress={() => {this.teacherDone()}}>
-              <Text style={styles.doneButton}> Done </Text>
+              <View style={styles.doneButton}>
+              < Text style={styles.buttonText}> 
+                Done 
+              </Text>
+              </View>
           </TouchableOpacity>
         </View>
         }
@@ -145,62 +163,78 @@ class Signup extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    backgroundColor: 'lightblue',
+  container: {
+    backgroundColor: '#274156',
     alignItems: 'center',
-    height: '100%',
-    width: '100%'
+    flex: 1,
   },
-  imAText: {
+  startText: {
     fontSize: 30,
+    fontFamily: 'HelveticaNeue-Medium',
     color: 'white',
-    paddingTop: 80
+    paddingTop: 80,
   },
   studentTeacherContainer: {
     flexDirection: 'row',
-    paddingTop: 20
+    paddingTop: 20,
   },
   studentButton: {
     fontSize: 40,
     paddingRight: 20,
-    color: 'white'
+    color: 'white',
+    fontFamily: 'HelveticaNeue-Medium',
   },
   studentButtonDisabled:{
     fontSize: 40,
     paddingRight: 20,
-    color: 'grey'
+    color: 'grey',
+    fontFamily: 'HelveticaNeue-Medium',
   },
   teacherButton: {
     fontSize: 40,
     paddingLeft: 20,
-    color: 'white'
+    color: 'white',
+    fontFamily: 'HelveticaNeue-Medium',
   },
   teacherButtonDisabled: {
     fontSize: 40,
     paddingLeft: 20,
-    color: 'grey'
+    color: 'grey',
+    fontFamily: 'HelveticaNeue-Medium',
   },
   promptsContainer: {
-    height: '100%',
-    width: '100%',
     alignItems: 'center'
   },
+
   textInputStyle: {
-    flex: 1
+    fontSize: 24,
+    color: 'black',
+    fontFamily: 'HelveticaNeue-Medium',
+    margin: 10,
   },
   userInfoInput: {
-    height: 30,
+    height: deviceHeight*.08,
+    width: deviceWidth*.9,
     backgroundColor: 'white',
-    width: '90%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10,
     borderRadius: 10,
-    marginTop: 20,
-    alignItems: 'center'
   },
   doneButton: {
+    height: deviceHeight*.09,
+    width: deviceHeight*.11,
+    backgroundColor: '#2c2828',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    borderRadius: 5,
+  },
+  buttonText:{
     fontSize: 20,
     color: 'white',
-    marginTop: 20
-  }
+    fontWeight: 'bold',
+  },
 });
 
 
