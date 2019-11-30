@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Image} from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 let deviceHeight = Dimensions.get('window').height;
@@ -12,40 +12,46 @@ class RegisteredLogin extends React.Component {
 
   }
 
+  state = {
+    username: '',
+    password: '',
+  }
+
   backPressed = () => {
     Actions.Login();
   }
 
   confirmation = () =>{
-    Actions.TeacherScheduleHome();
+    Actions.TeacherDash();
   }
 
   render() {
     return (
       // this is just random filler for the template, but this is where what the user sees is rendered
-      <View style={styles.background}>
+      <View style={styles.container}>
+        <ImageBackground
+                style={styles.background}
+                source={{ uri: 'https://wallpaperbro.com/img/53490.jpg' }}
+            >
         <Text style={styles.title}>
           MusicPro
         </Text>
-        
-        
-        <View style={styles.list}>
-          <Text>
-            User account:
-          </Text>
+        <View style={styles.userInfoInput}>
           <TextInput
-            style={styles.inputBox}
+            style={styles.textInputStyle}
+            value={this.state.username}
+            placeholder='username'
+            onChangeText={(username) => this.setState({username: username})}
           />
         </View>
-        <View style={styles.list}>
-          <Text>
-            Password:
-          </Text>
-          <TextInput
-            style={styles.inputBox}
-          />
-        </View>
-
+          <View style={styles.userInfoInput}>
+            <TextInput
+              style={styles.textInputStyle}
+              value={this.state.password}
+              placeholder='password'
+              onChangeText={(password) => this.setState({password: password})}
+            />
+          </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={() => this.confirmation()} style={styles.button} activeOpacity={.6}>
             <Text style={styles.buttonText}>Confirm</Text>
@@ -54,29 +60,40 @@ class RegisteredLogin extends React.Component {
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
         </View>
+        </ImageBackground>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
-    backgroundColor: 'lightblue',
+  },
+  background: {
+    height: deviceHeight,
+    width: deviceWidth,
     alignItems: 'center',
-    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 70,
     paddingTop: '66%',
     color: 'white',
   },
-  inputBox: {
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: 2,
-    width: 95*(deviceWidth/100),
-    height: 5*(deviceHeight/100),
+  textInputStyle: {
+    fontSize: 24,
+    color: '#2c2828',
+    fontFamily: 'HelveticaNeue-Medium',
+    margin: 10,
+  },
+  userInfoInput: {
+    height: deviceHeight*.08,
+    width: deviceWidth*.9,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10,
+    borderRadius: 10,
   },
   buttonContainer: {
     alignItems: 'center',
@@ -95,6 +112,10 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,    
   },
+  buttonText:{
+    fontFamily: 'HelveticaNeue-Medium',
+    color: '#2c2828',
+  }
 });
 
 

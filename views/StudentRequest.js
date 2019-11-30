@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants, apisAreAvailable } from 'expo';
+import { Actions } from 'react-native-router-flux';
+
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -32,17 +34,13 @@ handleEmailChange = email => {
     this.setState({ email });
 };
 
-handleSubmitPress = () => this.setState(state => ({
-    studentDashDisplay: 'block',
-    calendarDisplay: 'none',
-    studentRequestDisplay: 'none',
-}));
+handleSubmitPress = () => {
+    Actions.StudentDash();
+}
 
-handleBackArrowPress = () => this.setState(state => ({
-    studentDashDisplay: 'none',
-    calendarDisplay: 'block',
-    studentRequestDisplay: 'none',
-}));
+handleBackArrowPress = () => {
+    Actions.TeacherCalendar();
+  }
 
   render() {
     return (

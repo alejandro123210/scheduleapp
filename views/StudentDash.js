@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
 
-class TeacherDash extends React.Component {
+class StudentDash extends React.Component {
 
   //I always like keeping this here, it is for performing actions before the component (the screen) loads
   componentWillMount(){
@@ -23,30 +23,6 @@ class TeacherDash extends React.Component {
             name: 'Grace Jacobs',
             time: '11 - 12 PM',
         },
-        {
-            name: 'Paul Cookson',
-            time: '12 - 1  PM',
-        },
-        {
-            name: 'Grace Jacobs',
-            time: '2- 3 PM',
-        },
-        {
-            name: 'Grace Jacobs',
-            time: '3:30 - 4:30 PM',
-        },
-        {
-            name: 'Grace Jacobs',
-            time: '5 - 6 PM',
-        },
-        {
-            name: 'Grace Jacobs',
-            time: '7 - 7:30 PM',
-        },
-        {
-            name: 'Grace Jacobs',
-            time: '8 - 9 PM',
-        },
     ]
 }
 
@@ -58,7 +34,7 @@ handleCalendarPress = () => {
 }
 
 handleProfilePress = () => {
-    Actions.StudentList();
+    Actions.TeacherList();
 }
 
   render() {
@@ -84,14 +60,6 @@ handleProfilePress = () => {
                         <Image 
                          source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/calendar-times-o/256/0/274156_none.png' }}
                         style={styles.icon}
-                        />
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                        onPress={this.handleProfilePress}
-                    >
-                        <Image 
-                            source={{ uri: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png' }}
-                            style={styles.icon}
                         />
                     </TouchableHighlight>
                     <TouchableHighlight
@@ -153,6 +121,7 @@ const styles = StyleSheet.create({
          width: deviceWidth/2.5,
          alignItems: 'center',
          flexDirection: 'row',
+         paddingLeft: 40,
      },
      dateBar:{
         height: deviceHeight/10,
@@ -218,4 +187,4 @@ const styles = StyleSheet.create({
 
 
 //this lets the component get imported other places
-export default TeacherDash;
+export default StudentDash;

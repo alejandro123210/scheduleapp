@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
+import { Actions } from 'react-native-router-flux';
+
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -15,9 +17,6 @@ class TeacherList extends React.Component {
   //
   state = {
     inputValue: '',
-    studentDashDisplay: 'none',
-    calendarDisplay: 'none',
-    teacherListDisplay: 'block',
     teacherList: [
         {
             name: 'Grace Jacobs',
@@ -74,26 +73,20 @@ handleTextChange = inputValue => {
     this.setState({ inputValue });
 };
 
-handleCalendarPress = () => this.setState(state => ({
-    studentDashDisplay: 'block',
-    teacherListDisplay: 'none',
-}));
+handleCalendarPress = () => {
+    Actions.StudentDash();
+}
 
-handleProfilePress = () => this.setState(state => ({
-    studentDashDisplay: 'none',
-    teacherListDisplay: 'block',
-}));
+handleProfilePress = () => {
+}
 
-handleCheckPress = () => this.setState(state => ({
-    studentDashDisplay: 'none',
-    teacherListDisplay: 'none',
-    calendarDisplay: 'block',
-}));
+handleCheckPress = () => {
+    Actions.TeacherCalendar();
+  }
 
   render() {
     return (
       <View style={styles.container}>
-          <View style={{ display: this.state.teacherListDisplay}}>
                 <View style={styles.topBar}>
                     <View style={styles.leftContainer}>
                     <Image 
@@ -113,14 +106,6 @@ handleCheckPress = () => this.setState(state => ({
                         <Image 
                          source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/calendar-times-o/256/0/274156_none.png' }}
                         style={styles.icon}
-                        />
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                        onPress={this.handleProfilePress}
-                    >
-                        <Image 
-                            source={{ uri: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/pencil/256/0/274156_none.png' }}
-                            style={styles.icon}
                         />
                     </TouchableHighlight>
                     <TouchableHighlight
@@ -179,7 +164,6 @@ handleCheckPress = () => this.setState(state => ({
                     </View>
                 ))}
                 </ScrollView>
-                </View>
             </View>
     );
   }
@@ -207,9 +191,10 @@ const styles = StyleSheet.create({
          width: deviceWidth/2.5,
      },
      rightContainer:{
-         width: deviceWidth/2.5,
-         alignItems: 'center',
-         flexDirection: 'row',
+        width: deviceWidth/2.5,
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingLeft: 40,
      },
      searchBar:{
         height: deviceHeight/10,

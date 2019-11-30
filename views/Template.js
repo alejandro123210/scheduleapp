@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 class ClassName extends React.Component {
 
@@ -10,8 +11,10 @@ class ClassName extends React.Component {
 
   render() {
     return (
-      // this is just random filler for the template, but this is where what the user sees is rendered
-      <View />
+      //input code here
+      <View>
+        
+      </View>
     );
   }
 }

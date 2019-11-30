@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Dimensions, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 let deviceHeight = Dimensions.get('window').height;
@@ -34,16 +34,20 @@ class Signup extends React.Component {
   }
 
   studentDone = () => {
-    Actions.TeacherScheduleHome();
+    Actions.StudentDash();
   }
 
   teacherDone = () => {
-    Actions.TeacherScheduleHome();
+    Actions.TeacherDash();
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <ImageBackground
+          style={styles.background}
+          source={{ uri: 'https://wallpaperbro.com/img/53490.jpg' }}
+        >
         <Text style={styles.startText}> 
           I'm a 
         </Text>
@@ -156,7 +160,7 @@ class Signup extends React.Component {
           </TouchableOpacity>
         </View>
         }
-        
+      </ImageBackground>
       </View>
     );
   }
@@ -167,6 +171,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#274156',
     alignItems: 'center',
     flex: 1,
+  },
+  background:{
+    height: deviceHeight,
+    width: deviceWidth,
+    alignItems: 'center',
   },
   startText: {
     fontSize: 30,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, Dimensions, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
+import { Actions } from 'react-native-router-flux';
+
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
@@ -15,8 +17,6 @@ class StudentList extends React.Component {
   //
   state = {
     inputValue: '',
-    teacherDashDisplay: 'none',
-    studentListDisplay: 'block',
     studentList: [
         {
             name: 'Grace Jacobs',
@@ -73,15 +73,14 @@ handleTextChange = inputValue => {
     this.setState({ inputValue });
 };
 
-handleCalendarPress = () => this.setState(state => ({
-    teacherDashDisplay: 'block',
-    studentListDisplay: 'none',
-}));
+handleCalendarPress = () => {
+    Actions.TeacherDash();
+}
 
-handleProfilePress = () => this.setState(state => ({
-    teacherDashDisplay: 'none',
-    studentListDisplay: 'block',
-}));
+handleProfilePress = () => {
+    Actions.StudentList();
+}
+
 
   render() {
     return (
