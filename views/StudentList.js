@@ -5,7 +5,7 @@ import { Constants } from 'expo';
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
 
-class TeacherList extends React.Component {
+class StudentList extends React.Component {
 
   //I always like keeping this here, it is for performing actions before the component (the screen) loads
   componentWillMount(){
@@ -15,10 +15,9 @@ class TeacherList extends React.Component {
   //
   state = {
     inputValue: '',
-    studentDashDisplay: 'none',
-    calendarDisplay: 'none',
-    teacherListDisplay: 'block',
-    teacherList: [
+    teacherDashDisplay: 'none',
+    studentListDisplay: 'block',
+    studentList: [
         {
             name: 'Grace Jacobs',
             city: 'Manhattan, NY',
@@ -75,25 +74,19 @@ handleTextChange = inputValue => {
 };
 
 handleCalendarPress = () => this.setState(state => ({
-    studentDashDisplay: 'block',
-    teacherListDisplay: 'none',
+    teacherDashDisplay: 'block',
+    studentListDisplay: 'none',
 }));
 
 handleProfilePress = () => this.setState(state => ({
-    studentDashDisplay: 'none',
-    teacherListDisplay: 'block',
-}));
-
-handleCheckPress = () => this.setState(state => ({
-    studentDashDisplay: 'none',
-    teacherListDisplay: 'none',
-    calendarDisplay: 'block',
+    teacherDashDisplay: 'none',
+    studentListDisplay: 'block',
 }));
 
   render() {
     return (
       <View style={styles.container}>
-          <View style={{ display: this.state.teacherListDisplay}}>
+          <View style={{ display: this.state.studentListDisplay}}>
                 <View style={styles.topBar}>
                     <View style={styles.leftContainer}>
                     <Image 
@@ -146,35 +139,25 @@ handleCheckPress = () => this.setState(state => ({
                     
                 </View>
                 <ScrollView>
-                {this.state.teacherList.map((teacher) => (
+                {this.state.studentList.map((student) => (
                     <View style={styles.listContainer}>
                         <View style={styles.imageContainer}>
                             <Image
                             style={styles.image}
-                            source={{uri: teacher.image}}
+                            source={{uri: student.image}}
                             >
                             </Image>
                         </View>
                         <View style={styles.nameContainer}>
                             <Text style={styles.nameText}>
-                                {teacher.name}
+                                {student.name}
                             </Text>
                             <Text style={styles.infoText}>
-                                {teacher.city}
+                                {student.city}
                             </Text>
                             <Text style={styles.infoText}>
-                                {teacher.instrument}
+                                {student.instrument}
                             </Text>
-                        </View>
-                        <View style={styles.checkContainer}>
-                        <TouchableHighlight
-                        onPress={this.handleCheckPress}
-                         >
-                        <Image 
-                            source={{ uri: 'http://fa2png.io/media/icons/font-awesome/4-7-0/check-square/256/0/274156_none.png' }}
-                            style={styles.icon}
-                        />
-                        </TouchableHighlight>
                         </View>
                     </View>
                 ))}
@@ -235,7 +218,7 @@ const styles = StyleSheet.create({
          borderColor: 'grey',
      },
      nameContainer: {
-         width: (deviceWidth/4)*2,
+         width: (deviceWidth/4)*4,
          flexDirection: 'column',
      },
      imageContainer: {
@@ -243,11 +226,6 @@ const styles = StyleSheet.create({
          alignItems: 'center',
          justifyContent: 'center'
      },
-     checkContainer: {
-        width: deviceWidth/4,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
      nameText: {
          fontSize: 16,
          color: '#2c2828',
@@ -286,4 +264,4 @@ const styles = StyleSheet.create({
 
 
 //this lets the component get imported other places
-export default TeacherList;
+export default StudentList;
